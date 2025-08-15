@@ -2,6 +2,23 @@
 
 A demonstration repository for workspace management architecture and AI agent coordination.
 
+## 🚀 Get Started
+
+**👉 [See DEMO.md for complete setup instructions and walkthrough](./DEMO.md)**
+
+New to this project? Start with the demo guide which includes:
+- Step-by-step setup instructions
+- Configuration requirements  
+- Usage examples and scenarios
+- Architecture explanations
+
+## Quick Start
+
+1. **Configure credentials**: Edit `workspace-config.json` and update your GitHub/GitLab usernames
+2. **Run setup**: `./scripts/setup.sh` to validate your configuration
+3. **Prime workspace**: Use Claude Code `/workspace:prime` or follow manual setup
+4. **Explore**: See the complete walkthrough in [DEMO.md](./DEMO.md)
+
 ## Purpose
 
 This repository serves as a practical example for discussions around:
@@ -52,11 +69,13 @@ workspace/
 
 This repository is designed to be part of a larger workspace. To see it in action:
 
-1. Clone the parent workspace
-2. Run workspace priming to set up all projects
-3. Observe AI agent coordination through activity logs
-4. Experience cross-project development workflows
+1. **First time?** → [Read DEMO.md](./DEMO.md) for complete setup guide
+2. **Quick setup** → Edit `workspace-config.json` with your usernames  
+3. **Validate** → Run `./scripts/setup.sh`
+4. **Prime workspace** → Use Claude Code `/workspace:prime`
+5. **Explore** → Check activity logs and cross-project workflows
 
+**📖 For detailed instructions, examples, and troubleshooting → [DEMO.md](./DEMO.md)**
 
 ## License
 
