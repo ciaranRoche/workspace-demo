@@ -5,8 +5,8 @@
     "created": "2025-08-15"
   },
   "user": {
-    "github_username": "ciaranRoche",
-    "gitlab_username": "croche"
+    "github_username": "YOUR_GITHUB_USERNAME",
+    "gitlab_username": "YOUR_GITLAB_USERNAME"
   },
   "settings": {
     "default_clone_path": "./projects",
