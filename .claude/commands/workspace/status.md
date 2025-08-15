@@ -4,7 +4,14 @@ This command provides an interactive overview of workspace activity, displaying 
 
 ## Prerequisites
 
-- Ensure `workspace-activity.json` exists in the workspace root
+**IMPORTANT: Workspace Root Determination**
+- `{workspace_root}` refers to the absolute path of the directory containing `workspace-config.json`
+- Use the `pwd` command or equivalent to determine the current working directory
+- All file paths in this command must be absolute paths derived from the workspace root
+- Example: If workspace is at `/Users/john/my-workspace`, then `{workspace_root}` = `/Users/john/my-workspace`
+
+**Required Files:**
+- Ensure `{workspace_root}/workspace-activity.json` exists in the workspace root
 - Workspace is properly initialized with activity logging
 - User has permissions to read and modify workspace files
 
@@ -15,17 +22,17 @@ This command provides an interactive overview of workspace activity, displaying 
 **CRITICAL: These files MUST exist and be readable. If any file cannot be read, STOP and inform the user.**
 
 1. **Read Bootstrap Instructions**: 
-   - **File Path**: `.claude/bootstrap.md` (relative to current working directory)
+   - **File Path**: Use absolute path `{workspace_root}/.claude/bootstrap.md`
    - **Action**: Use Read tool to load this file
-   - **Error Handling**: If file doesn't exist or cannot be read, STOP execution and display: "ERROR: Cannot read .claude/bootstrap.md - Bootstrap file is missing or inaccessible. Please ensure this file exists in the workspace."
+   - **Error Handling**: If file doesn't exist or cannot be read, STOP execution and display: "ERROR: Cannot read {workspace_root}/.claude/bootstrap.md - Bootstrap file is missing or inaccessible. Please ensure this file exists in the workspace."
 
 2. **Load Global Configuration**: 
-   - **File Path**: `.claude/config.md` (relative to current working directory)  
+   - **File Path**: Use absolute path `{workspace_root}/.claude/config.md`  
    - **Action**: Use Read tool to load this file
-   - **Error Handling**: If file doesn't exist or cannot be read, STOP execution and display: "ERROR: Cannot read .claude/config.md - Global configuration file is missing or inaccessible. Please ensure this file exists in the workspace."
+   - **Error Handling**: If file doesn't exist or cannot be read, STOP execution and display: "ERROR: Cannot read {workspace_root}/.claude/config.md - Global configuration file is missing or inaccessible. Please ensure this file exists in the workspace."
 
 3. **Validate Workspace Structure**: 
-   - **File Path**: `workspace-activity.json` (relative to current working directory)
+   - **File Path**: Use absolute path `{workspace_root}/workspace-activity.json`
    - **Action**: Use Read tool to check if file exists and is valid JSON
    - **Error Handling**: If file doesn't exist, create it with empty structure. If file exists but is invalid JSON, STOP execution and display: "ERROR: workspace-activity.json exists but contains invalid JSON. Please fix or delete this file."
 
@@ -34,7 +41,7 @@ This command provides an interactive overview of workspace activity, displaying 
 **MANDATORY: Follow the exact activity logging protocol defined in the bootstrap and config files.**
 
 1. **Initialize Activity Log**: 
-   - **Action**: Read `workspace-activity.json` (already validated in Step 0A)
+   - **Action**: Read `{workspace_root}/workspace-activity.json` (already validated in Step 0A)
    - **Purpose**: Load current workspace state and existing tasks
    - **Error Handling**: If JSON parsing fails after validation, STOP execution and display: "ERROR: workspace-activity.json format is corrupted. Please restore from backup or recreate."
 
@@ -44,7 +51,7 @@ This command provides an interactive overview of workspace activity, displaying 
    - **Record**: Log agent registration in workspace activity
 
 3. **Check Active Tasks**: 
-   - **Action**: Review `active_tasks` array in workspace-activity.json
+   - **Action**: Review `active_tasks` array in `{workspace_root}/workspace-activity.json`
    - **Purpose**: Identify conflicts with other active agents and resumable tasks
    - **Conflict Check**: Ensure no conflicts with ongoing status operations
 
@@ -82,7 +89,7 @@ Create task record with the following structure:
 
 **Log Progress**: Update task progress to "activity-log-read"
 
-Read the `workspace-activity.json` file and parse the current workspace state:
+Read the `{workspace_root}/workspace-activity.json` file and parse the current workspace state:
 1. Load the complete activity log
 2. Extract active tasks, completed tasks, and metrics
 3. Validate the structure and identify any inconsistencies
@@ -240,7 +247,7 @@ For other selections:
 1. **Mark Status Task Complete**: Update task status to "completed" in activity log
 2. **Record Final Results**: Log comprehensive status review summary
 3. **Update Workspace Metrics**: Refresh counters and statistics
-4. **Save Activity Log**: Persist all changes to `workspace-activity.json`
+4. **Save Activity Log**: Persist all changes to `{workspace_root}/workspace-activity.json`
 5. **Update Last Activity**: Set current timestamp for workspace activity
 
 ### Step 7: Generate Status Summary

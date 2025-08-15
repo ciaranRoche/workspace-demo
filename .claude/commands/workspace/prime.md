@@ -4,7 +4,14 @@ This workflow guides Claude Code through setting up all projects from the worksp
 
 ## Prerequisites
 
-- Ensure `workspace-config.json` exists in the current directory
+**IMPORTANT: Workspace Root Determination**
+- `{workspace_root}` refers to the absolute path of the directory containing `workspace-config.json`
+- Use the `pwd` command or equivalent to determine the current working directory
+- All file paths in this command must be absolute paths derived from the workspace root
+- Example: If workspace is at `/Users/john/my-workspace`, then `{workspace_root}` = `/Users/john/my-workspace`
+
+**Required Files:**
+- Ensure `{workspace_root}/workspace-config.json` exists in the workspace directory
 - SSH keys are configured for both GitHub and GitLab
 - Git is installed and configured
 
@@ -15,17 +22,17 @@ This workflow guides Claude Code through setting up all projects from the worksp
 **CRITICAL: These files MUST exist and be readable. If any file cannot be read, STOP and inform the user.**
 
 1. **Read Bootstrap Instructions**: 
-   - **File Path**: `.claude/bootstrap.md` (relative to current working directory)
+   - **File Path**: Use absolute path `{workspace_root}/.claude/bootstrap.md`
    - **Action**: Use Read tool to load this file
-   - **Error Handling**: If file doesn't exist or cannot be read, STOP execution and display: "ERROR: Cannot read .claude/bootstrap.md - Bootstrap file is missing or inaccessible. Please ensure this file exists in the workspace."
+   - **Error Handling**: If file doesn't exist or cannot be read, STOP execution and display: "ERROR: Cannot read {workspace_root}/.claude/bootstrap.md - Bootstrap file is missing or inaccessible. Please ensure this file exists in the workspace."
 
 2. **Load Global Configuration**: 
-   - **File Path**: `.claude/config.md` (relative to current working directory)  
+   - **File Path**: Use absolute path `{workspace_root}/.claude/config.md`  
    - **Action**: Use Read tool to load this file
-   - **Error Handling**: If file doesn't exist or cannot be read, STOP execution and display: "ERROR: Cannot read .claude/config.md - Global configuration file is missing or inaccessible. Please ensure this file exists in the workspace."
+   - **Error Handling**: If file doesn't exist or cannot be read, STOP execution and display: "ERROR: Cannot read {workspace_root}/.claude/config.md - Global configuration file is missing or inaccessible. Please ensure this file exists in the workspace."
 
 3. **Validate Workspace Structure**: 
-   - **File Path**: `workspace-activity.json` (relative to current working directory)
+   - **File Path**: Use absolute path `{workspace_root}/workspace-activity.json`
    - **Action**: Use Read tool to check if file exists and is valid JSON
    - **Error Handling**: If file doesn't exist, create it with empty structure. If file exists but is invalid JSON, STOP execution and display: "ERROR: workspace-activity.json exists but contains invalid JSON. Please fix or delete this file."
 
@@ -34,7 +41,7 @@ This workflow guides Claude Code through setting up all projects from the worksp
 **MANDATORY: Follow the exact activity logging protocol defined in the bootstrap and config files.**
 
 1. **Initialize Activity Log**: 
-   - **Action**: Read `workspace-activity.json` (already validated in Step 0A)
+   - **Action**: Read `{workspace_root}/workspace-activity.json` (already validated in Step 0A)
    - **Purpose**: Load current workspace state and existing tasks
    - **Error Handling**: If JSON parsing fails after validation, STOP execution and display: "ERROR: workspace-activity.json format is corrupted. Please restore from backup or recreate."
 
@@ -44,7 +51,7 @@ This workflow guides Claude Code through setting up all projects from the worksp
    - **Record**: Log agent registration in workspace activity
 
 3. **Check Active Tasks**: 
-   - **Action**: Review `active_tasks` array in workspace-activity.json
+   - **Action**: Review `active_tasks` array in `{workspace_root}/workspace-activity.json`
    - **Purpose**: Identify conflicts with other active agents and resumable tasks
    - **Conflict Check**: Ensure no conflicts with ongoing project setup operations
 
@@ -83,7 +90,7 @@ Create task record with the following structure:
 
 **Log Progress**: Update task progress to "workspace-config-read"
 
-Claude, please read the `workspace-config.json` file to understand the project structure and user configuration. Extract the user's GitHub and GitLab usernames, and identify all active projects that need to be set up.
+Claude, please read the `{workspace_root}/workspace-config.json` file to understand the project structure and user configuration. Extract the user's GitHub and GitLab usernames, and identify all active projects that need to be set up.
 
 **Activity Logging**: Record workspace configuration loading and project inventory
 
@@ -147,7 +154,7 @@ For each successfully configured project, update its metadata in the workspace c
 
 1. Set the `last_synced` field to the current timestamp (ISO format)
 2. Update any project status information if applicable
-3. Save the updated configuration back to `workspace-config.json`
+3. Save the updated configuration back to `{workspace_root}/workspace-config.json`
 
 **Activity Logging**: Record metadata updates and configuration saves
 
@@ -180,7 +187,7 @@ After setting up each project, verify the configuration:
 1. **Mark Task Complete**: Update task status to "completed" in activity log
 2. **Record Final Results**: Log comprehensive project setup summary and results
 3. **Update Workspace Metrics**: Refresh counters and statistics
-4. **Save Activity Log**: Persist all changes to `workspace-activity.json`
+4. **Save Activity Log**: Persist all changes to `{workspace_root}/workspace-activity.json`
 5. **Update Workspace Timestamp**: Set `last_updated` in workspace config
 
 ### Step 10: Generate Artifacts
@@ -247,6 +254,6 @@ To execute this workflow:
 
 > "Prime all workspace projects using the project setup workflow"
 
-> "Set up the development workspace according to workspace-config.json"
+> "Set up the development workspace according to {workspace_root}/workspace-config.json"
 
 Claude Code will automatically integrate with the activity logging system and provide complete tracking of the project setup process.
