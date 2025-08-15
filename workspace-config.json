@@ -1,0 +1,66 @@
+{
+  "workspace": {
+    "name": "Workspace Demo Environment",
+    "version": "1.0.0",
+    "created": "2025-08-15"
+  },
+  "user": {
+    "github_username": "ciaranRoche",
+    "gitlab_username": "croche"
+  },
+  "settings": {
+    "default_clone_path": "./projects",
+    "default_branch": "main",
+    "auto_pull_updates": true,
+    "preferred_git_protocol": "ssh"
+  },
+  "projects": [
+    {
+      "alias": "trex",
+      "name": "rh-trex",
+      "platform": "github",
+      "url": "https://github.com/openshift-online/rh-trex.git",
+      "ssh_url": "git@github.com:openshift-online/rh-trex.git",
+      "description": "TRex is Red Hat's Trusted Rest EXample - a production-ready microservice template for rapid API development.",
+      "local_path": "./projects/rh-trex",
+      "branch": "main",
+      "tags": [
+        "SDK",
+        "OCM",
+        "Golang",
+        "REST",
+        "Postgres",
+        "Backend",
+        "Template"
+      ],
+      "priority": "high",
+      "active": true,
+      "last_synced": "2025-08-15T09:05:00Z"
+    },
+    {
+      "alias": "ocm-cli",
+      "name": "ocm-cli",
+      "platform": "github",
+      "url": "https://github.com/openshift-online/ocm-cli.git",
+      "ssh_url": "git@github.com:openshift-online/ocm-cli.git",
+      "description": "This project contains the ocm command line tool that simplifies the use of the OCM API available at https://api.openshift.com.",
+      "local_path": "./projects/ocm-cli",
+      "branch": "main",
+      "tags": [
+        "CLI",
+        "golang",
+        "production",
+        "OCM",
+        "API"
+      ],
+      "priority": "high",
+      "active": true,
+      "last_synced": "2025-08-15T09:05:00Z"
+    }
+  ],
+  "metadata": {
+    "total_projects": 2,
+    "active_projects": 2,
+    "last_updated": "2025-08-15T09:05:00Z"
+  }
+}

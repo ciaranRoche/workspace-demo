@@ -1,0 +1,46 @@
+{
+  "workspace": {
+    "id": "workspace-demo-20250815-demo",
+    "session_start": "2025-08-15T09:05:00Z",
+    "agent_id": "claude-agent-demo-1723710300000",
+    "last_updated": "2025-08-15T09:05:00Z"
+  },
+  "active_tasks": [],
+  "completed_tasks": [
+    {
+      "id": "task-2025-08-15-0905-project-setup",
+      "type": "project-setup",
+      "project": "workspace",
+      "title": "Demo workspace initialization with rh-trex and ocm-cli",
+      "status": "completed",
+      "assigned_agent": "claude-agent-demo-1723710300000",
+      "created": "2025-08-15T09:05:00Z",
+      "last_activity": "2025-08-15T09:05:00Z",
+      "context": {
+        "workspace_config": "workspace-config.json",
+        "projects_count": "2",
+        "projects_configured": ["rh-trex", "ocm-cli"],
+        "demo_environment": true,
+        "purpose": "architectural presentation and testing"
+      },
+      "progress": {
+        "completed_steps": ["config-creation", "project-definitions", "metadata-setup"],
+        "current_step": "completed",
+        "remaining_steps": []
+      }
+    }
+  ],
+  "metrics": {
+    "total_tasks": 1,
+    "completed_tasks": 1,
+    "active_tasks": 0,
+    "tasks_by_type": {
+      "project-setup": 1
+    },
+    "tasks_by_project": {
+      "workspace": 1
+    },
+    "active_agents": 1,
+    "last_status_check": "2025-08-15T09:05:00Z"
+  }
+}
