@@ -112,9 +112,6 @@ claude-code /workspace:prime
 
 # Check workspace status and active tasks
 claude-code /workspace:status
-
-# Update all projects from upstream
-claude-code /workspace:pull
 ```
 
 ### Development Operations
